@@ -27,5 +27,5 @@ jobs:
 
       - name: Test project
         run: |
-          grep -q "Hello GitHub Actions!" index.html
+          grep -q "Welcome to My Project!" index.html
           echo "All tests passed"
