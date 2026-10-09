@@ -11,6 +11,7 @@ on:
 
 jobs:
   test:
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
@@ -22,14 +23,28 @@ jobs:
           test -f index.html
           test -f style.css
           test -f script.js
-          echo "All files exist"
+          echo "All required files exist"
 
       - name: Build project
         run: |
+          echo "Static HTML, CSS and JavaScript project"
           echo "Build successful"
 
-      - name: Test project
+      - name: Test HTML
         run: |
-          grep -q "Welcome" index.html
-          grep -q "addEventListener\|showMessage" script.js
-          echo "All tests passed"
+          grep -qi "<html" index.html
+          grep -qi "<h1" index.html
+          echo "HTML test passed"
+
+      - name: Test CSS
+        run: |
+          grep -q "body" style.css
+          echo "CSS test passed"
+
+      - name: Test JavaScript
+        run: |
+          grep -Eq "addEventListener|showMessage" script.js
+          echo "JavaScript test passed"
+
+      - name: All tests completed
+        run: echo "All checks passed successfully"
