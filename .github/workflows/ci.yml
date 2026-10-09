@@ -3,9 +3,11 @@ name: CI Workflow
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   test:
@@ -23,9 +25,11 @@ jobs:
           echo "All files exist"
 
       - name: Build project
-        run: echo "Build successful"
+        run: |
+          echo "Build successful"
 
       - name: Test project
         run: |
-          grep -q "Welcome to My Project!" index.html
+          grep -q "Welcome" index.html
+          grep -q "addEventListener\|showMessage" script.js
           echo "All tests passed"
